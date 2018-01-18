@@ -26,7 +26,7 @@ file=open('Data_Entry_2017_v2.csv','r')
 line=file.readline()
 
 k=0
-for line in file.readlines()[70050:len(file.readlines())-1]:
+for line in file.readlines()[:-1]:
     print (line)
     k += 1
     tmp=line.split(',')
