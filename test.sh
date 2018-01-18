@@ -7,6 +7,11 @@ if [ ! -f test-save_24.npy ]; then
     curl ftp://140.112.107.150/test-save_24.npy -o test-save_24.npy
 fi
 
+echo "========================================================="
+echo "[-] install judger_medical"
+echo ""
+pip3 install judger_medical-1.0-py2.py3-none-any.whl
+
 echo "Start Testing..."
 
 python3 judge.py
