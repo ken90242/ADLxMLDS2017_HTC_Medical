@@ -5,6 +5,7 @@ if [ ! -f vgg19.npy ]; then
 		echo "[-] download vgg19.npy"
 		echo ""
     curl ftp://140.112.107.150/vgg19.npy -o vgg19.npy
+fi
 
 # $1 -> eg: images/
 echo "[-] generate .npy files of img & label"
