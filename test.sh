@@ -10,7 +10,7 @@ fi
 echo "========================================================="
 echo "[-] install judger_medical"
 echo ""
-pip3 install judger_medical-1.0-py2.py3-none-any.whl
+sudo pip3 install judger_medical-1.0-py2.py3-none-any.whl
 
 echo "Start Testing..."
 
