@@ -36,10 +36,11 @@ for line in file.readlines()[70050:len(file.readlines())-1]:
         for i in range(len(tmp1)):
          #   print (tmp1[i])
 #            tmp_label[int(label_index[tmp1[i]])]=1.0/len(tmp1)
+            if(tmp[1] not in label_index.keys()): continue
             tmp_label[int(label_index[tmp1[i]])] = 1.0
 
-    else:
-        tmp_label[int(label_index[tmp[1]])]=1        
+    elif tmp[1] in label_index.keys():
+        tmp_label[int(label_index[tmp[1]])]=1
     line=file.readline()
     # sys.argv[1] = images/ (default)
     if os.path.exists(os.path.join(sys.argv[1], tmp[0])):
