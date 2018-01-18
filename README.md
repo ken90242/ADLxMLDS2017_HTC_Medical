@@ -9,7 +9,9 @@
 ```Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-104-generic x86_64)```
 
 ### - Python Version
-```Python 3.5.2```
+```Python 3.5.2```  for training
+
+```Python 2.7.12``` for testing (restricted by HTC validation code)
 
 ### - Data Needed
 - **Image files** list in **Data_Entry_2017_v2.csv**
