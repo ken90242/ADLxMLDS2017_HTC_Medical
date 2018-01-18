@@ -39,9 +39,9 @@ def main():
     model.build(learning_rate)
 
     sess.run(tf.global_variables_initializer())
-    total_validation_image, total_validation_label = load_trainingdata(total_validation_list, 440)
+    total_validation_image, total_validation_label = load_trainingdata(total_validation_list, 10)
 
-    total_train_image, total_train_label = load_trainingdata(total_training_list, 6589)
+    total_train_image, total_train_label = load_trainingdata(total_training_list, 10)
 
     trainloadlist = np.arange(0, len(total_train_label)-1)
     validloadlist = np.arange(0, len(total_validation_label)-1)
@@ -131,7 +131,7 @@ def load_trainingdata(idlist,maxnum):
              image = np.load('data/' + image_idx + '.npy')
              label = np.load('labels/' + image_idx + '.npy')
              imagelist.append(image)
-             labellist.append(label[1:9])
+             labellist.append(label)
              count+=1
     return imagelist,labellist
 
