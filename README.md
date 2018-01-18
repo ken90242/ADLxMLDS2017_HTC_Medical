@@ -10,6 +10,7 @@
 
 ### - Python Version
 ```Python 3.5.2```  for training
+
 ```Python 2.7.12``` for testing (restricted by HTC validation code)
 
 ### - Data Needed
