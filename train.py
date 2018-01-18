@@ -36,10 +36,11 @@ def main():
     
 
     model = vgg19.Vgg19('vgg19.npy')
+
     model.build(learning_rate)
 
     sess.run(tf.global_variables_initializer())
-    total_validation_image, total_validation_label = load_trainingdata(total_validation_list, 10)
+    total_validation_image, total_validation_label = load_trainingdata(total_validation_list, 2000)
 
     total_train_image, total_train_label = load_trainingdata(total_training_list, 10)
 
@@ -60,7 +61,7 @@ def main():
         np.random.shuffle(trainloadlist)
         np.random.shuffle(validloadlist)
 
-        while (batch_no+1)*batch_size < len(total_train_image):
+        while (batch_no)*batch_size < len(total_train_image):
 
             train_image, train_label = get_training_batch(batch_size, total_train_image, total_train_label, trainloadlist,batch_no)
 
@@ -70,7 +71,7 @@ def main():
                                              model.weight:weight, model.train_mode: True})
 
          
-            if batch_no%30==0:
+            if batch_no%2==0:
                 train_loss=sess.run(model.loss, feed_dict={model.input: train_image, model.GT: train_label, model.threshold:threshold,
                                                            model.weight: weight, model.train_mode: False})
                 val_loss=sess.run(model.loss, feed_dict={model.input: validation_image, model.GT: validation_label,
@@ -125,21 +126,24 @@ def load_trainingdata(idlist,maxnum):
     imagelist=[]
     labellist=[]
     count=0
-    while count < maxnum:
-         image_idx = idlist[count]
-         if os.path.exists('data/' + image_idx + '.npy'):
+
+    for image_idx in idlist:
+        if (count >= maxnum): break
+
+        if os.path.exists('data/' + image_idx + '.npy'):
              image = np.load('data/' + image_idx + '.npy')
              label = np.load('labels/' + image_idx + '.npy')
              imagelist.append(image)
              labellist.append(label)
              count+=1
+
     return imagelist,labellist
 
 def get_training_batch(batch_size,image,label, trainloadlist,batch_no):
     train_image=[]
     train_label=[]
 
-    for i in range(batch_no*batch_size,batch_no*batch_size+batch_size):
+    for i in range(batch_no*batch_size,min(batch_no*batch_size+batch_size, len(trainloadlist))):
         idx=trainloadlist[i]
         train_image.append(image[idx])
         train_label.append(label[idx])
